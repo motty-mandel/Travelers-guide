@@ -1,0 +1,60 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    font-family: Arial, sans-serif;
+    background-image: url("https://media.giphy.com/media/mf8UbIDew7e8g/giphy.gif");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    min-height: 100vh;
+
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+
+main {
+    padding: 20px;
+}
+
+section {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+}
+#earth{
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 30%;
+    text-align: center;
+    justify-content: center;
+}
+footer {
+    display: flex;
+    flex-direction: row;
+    background-color: #333;
+    color: #fff;
+    padding: 10px;  
+}
+
+a {
+    color: #fff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+
+.git-links{
+    display: flex;
+  flex-direction: column;
+    padding-left: 80%;
+}

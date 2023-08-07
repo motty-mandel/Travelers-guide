@@ -1,12 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./assets/style.css">
 </head>
+
 <body>
+    <header>
+        <h1>Travel Guide To The World</h1>
+        <form action="/search" method="get">
+            <label for="search-input">Search:</label>
+            <input type="text" id="search-input" name="query" placeholder="Enter your search term" />
+            <input type="submit" value="Search" />
+        </form>
+    </header>
+
+    <main>
+        <section id="earth">
+            <p>Welcome to our travel website! Here, you can explore information about fascinating destinations around
+                the world.
+                Discover details such as weather conditions, currency, capital cities, and languages spoken in each
+                location.
+                Enter the name of a place you'd like to learn more about, and embark on a journey of discovery!
+            </p>
+        </section>
+        <section>
+        <div id="hidden-wrapper">
+            <div class="info-wrapper">
+                <div id="display-info"></div>
+            </div>
+        </div>
+        </section>
+    </main>
+
+    <footer>
+        <section class="credits">
+            <ul>
+                <li>rob</li>
+                <li>motty</li>
+                <li>erick</li>
+                <li>Mariam</li>
+            </ul>
+        </section>
+        <section class="git-links">
+            <a href="https://www.example.com">Visit Example Website 1</a>
+            <a href="https://www.example.com">Visit Example Website 2</a>
+            <a href="https://www.example.com">Visit Example Website 3</a>
+        </section>
+    </footer>
     <script src="./assets/script.js"></script>
 </body>
+
 </html>
