@@ -1,11 +1,10 @@
-var restCountriesUrl = "https://restcountries.com/v3.1/name/";
+var countriesUrl = "https://restcountries.com/v3.1/name/";
 var searchInput = document.querySelector('#search-input');
-var countryName = searchInput.value;
+var countryName = "usa";
 
-
-fetch(restCountriesUrl + countryName)
-.then(function(response) {
-    return response.json()
+fetch(countriesUrl + countryName)
+.then(function (response) {
+return response.json()
 })
 .then(function(data) {
 console.log(data)
