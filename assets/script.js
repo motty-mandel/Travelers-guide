@@ -6,8 +6,6 @@ var displayInfo = document.getElementById('display-info');
 var weatherUrl = "https://api.openweathermap.org/data/2.5/weather?q=";
 var apiKey = "a8a526129b6eee34cf52f1de1b4a6927";
 
-
-
 form.addEventListener('submit', async (event) => {
     event.preventDefault();
     welcomeMessage.style.display = "none";
@@ -17,18 +15,27 @@ form.addEventListener('submit', async (event) => {
         var response = await fetch(countriesUrl + searchTerm);
         var data = await response.json();
 
+        console.log(data);
+
         if (data.status === 404) {
             displayInfo.innerHTML = "Country not found.";
         } else {
             var countryData = data[0];
+            console.log(countryData);
             var capital = countryData.capital[0];
-            var language = countryData.languages.eng;
-            var currency = countryData.currencies.USD.symbol + ' ' + countryData.currencies.USD.name;
+            var languages = Object.values(countryData.languages).join(", ");
+            var currencySymbol, currencyName;
+            for (var currencyCode in countryData.currencies) {
+                currencySymbol = countryData.currencies[currencyCode].symbol;
+                currencyName = countryData.currencies[currencyCode].name;
+                 break;
+    }
             var population = countryData.population;
             var flag = countryData.flags.png;
             var region = data[0].region
             var latlng = data[0].latlng
-            var maps = data[1].maps
+            // var maps = data[1].maps
+
 
             var fetchWeather = function () {
                 fetch(weatherUrl + searchInput.value + "&appid=" + apiKey + "&units=imperial")
@@ -43,8 +50,8 @@ form.addEventListener('submit', async (event) => {
 
             displayInfo.innerHTML = `
                     <p>Capital: ${capital}</p>
-                    <p>Language: ${language}</p>
-                    <p>Currency: ${currency}</p>
+                    <p>Language: ${languages}</p>
+                    <p>Currency: ${currencySymbol} ${currencyName}</p>
                     <p>Population: ${population}</p>
                     <p>Region: ${region}</p>
                     <p>Lat-Lng: ${latlng}</p>
@@ -54,7 +61,5 @@ form.addEventListener('submit', async (event) => {
     } catch (error) {
         console.error("Error fetching data:", error);
     }
-    console.log(data);
 });
-
 
