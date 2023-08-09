@@ -3,6 +3,7 @@ var form = document.querySelector('form');
 var welcomeMessage = document.querySelector('#earth');
 var searchInput = document.querySelector('#search-input');
 var displayInfo = document.getElementById('display-info');
+var weatherInfo = document.querySelector('#weather-info')
 var weatherUrl = "https://api.openweathermap.org/data/2.5/weather?q=";
 var apiKey = "a8a526129b6eee34cf52f1de1b4a6927";
 
@@ -23,13 +24,13 @@ form.addEventListener('submit', async (event) => {
             var countryData = data[0];
             console.log(countryData);
             var capital = countryData.capital[0];
-            var languages = Object.values(countryData.languages).join(", ");
+            var languages = Object.values(countryData.languages);
             var currencySymbol, currencyName;
             for (var currencyCode in countryData.currencies) {
                 currencySymbol = countryData.currencies[currencyCode].symbol;
                 currencyName = countryData.currencies[currencyCode].name;
-                 break;
-    }
+                break;
+            }
             var population = countryData.population;
             var flag = countryData.flags.png;
             var region = data[0].region
@@ -38,14 +39,24 @@ form.addEventListener('submit', async (event) => {
 
 
             var fetchWeather = function () {
-                fetch(weatherUrl + searchInput.value + "&appid=" + apiKey + "&units=imperial")
+                fetch(weatherUrl + capital + "&appid=" + apiKey + "&units=imperial")
                     .then(function (response) {
                         return response.json()
                     })
                     .then(function (weatherData) {
                         console.log(weatherData);
+                        var temp = weatherData.main.temp;
+
+
+                        weatherInfo.innerHTML = `
+                        <p>Temperature: ${temp}</p>
+                        <img src="" alt="">
+                        `
+
                     })
             }
+            fetchWeather();
+
 
 
             displayInfo.innerHTML = `
