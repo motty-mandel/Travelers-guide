@@ -74,7 +74,7 @@ function displayCountryInfo(countryData) {
         var flag = countryData.flags.png;
         var region = countryData.region;
         var latlng = countryData.latlng;
-
+             
         var fetchWeather = function () {
             fetch(weatherUrl + capital + "&appid=" + apiKey + "&units=imperial")
                 .then(function (response) {
@@ -110,3 +110,4 @@ function displayCountryInfo(countryData) {
         console.error("Error displaying country info:", error);
     }
 }
+
