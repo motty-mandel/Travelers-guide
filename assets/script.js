@@ -2,18 +2,21 @@ var form = document.querySelector('form');
 var welcomeMessage = document.querySelector('#earth');
 var searchInput = document.querySelector('#search-input');
 var displayInfo = document.getElementById('display-info');
-var weatherInfo = document.querySelector('#weather-info');
+var weatherInfo = document.getElementById('weather-info');
 
 var iconUrl = "https://openweathermap.org/img/w/";
 var countriesUrl = "https://restcountries.com/v3.1/name/";
 var weatherUrl = "https://api.openweathermap.org/data/2.5/weather?q=";
 var apiKey = "a8a526129b6eee34cf52f1de1b4a6927";
+
 displayInfo.style.display = "none";
+weatherInfo.style.display = "none";
 
 form.addEventListener('submit', async (event) => {
     event.preventDefault();
     welcomeMessage.style.display = "none";
     displayInfo.style.display = "block";
+    weatherInfo.style.display = "block";
     var searchTerm = searchInput.value;
 
     try {
@@ -38,6 +41,7 @@ form.addEventListener('submit', async (event) => {
 });
 
 function displayCountryOptions(countries) {
+    weatherInfo.style.display = "none";
     var optionsHtml = countries.map((country, index) => {
         return `<option value="${index}">${country.name.common}</option>`;
     }).join('');
@@ -57,6 +61,7 @@ function displayCountryOptions(countries) {
         var selectedIndex = parseInt(countrySelect.value);
         var selectedCountry = countries[selectedIndex];
         displayCountryInfo(selectedCountry);
+        weatherInfo.style.display = "block";
     });
 }
 
