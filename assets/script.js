@@ -6,10 +6,12 @@ var displayInfo = document.getElementById('display-info');
 var weatherInfo = document.querySelector('#weather-info')
 var weatherUrl = "https://api.openweathermap.org/data/2.5/weather?q=";
 var apiKey = "a8a526129b6eee34cf52f1de1b4a6927";
+displayInfo.style.display = "none";
 
 form.addEventListener('submit', async (event) => {
     event.preventDefault();
     welcomeMessage.style.display = "none";
+    displayInfo.style.display = "block";
     var searchTerm = searchInput.value;
 
     try {
@@ -60,14 +62,14 @@ form.addEventListener('submit', async (event) => {
 
 
             displayInfo.innerHTML = `
-                    <p>Capital: ${capital}</p>
-                    <p>Language: ${languages}</p>
-                    <p>Currency: ${currencySymbol} ${currencyName}</p>
-                    <p>Population: ${population}</p>
-                    <p>Region: ${region}</p>
-                    <p>Lat-Lng: ${latlng}</p>
-                    <img src="${flag}" alt="Flag" width="100">
-                    `;
+            <p class="capital-info">Capital: ${capital}</p>
+            <p class="language-info">Language: ${languages}</p>
+            <p class="currency-info">Currency: ${currencySymbol} ${currencyName}</p>
+            <p class="population-info">Population: ${population}</p>
+            <p class="region-info">Region: ${region}</p>
+            <p class="latlng-info">Lat-Lng: ${latlng}</p>
+            <img class="flag-info" src="${flag}" alt="Flag" width="100">
+          `;
         }
     } catch (error) {
         console.error("Error fetching data:", error);
