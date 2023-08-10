@@ -96,7 +96,7 @@ function displayCountryInfo(countryData) {
             <p class="currency-info">Currency: ${currencySymbol} ${currencyName}</p>
             <p class="population-info">Population: ${population}</p>
             <p class="region-info">Region: ${region}</p>
-            <p class="latlng-info">Lat-Lng: <a href="https://www.openstreetmap.org/#map=4/${latlng[0]}/${latlng[1]}" target="_blank">${latlng[0]}, ${latlng[1]}</a>
+            <p class="latlng-info">Lat-Lng: <a href="https://www.openstreetmap.org/#map=4/${latlng[0]}/${latlng[1]}" target="_blank">${latlng[0]}, ${latlng[1]}</a></p>
             <img class="flag-info" src="${flag}" alt="Flag" width="100">
         `;
     } catch (error) {
