@@ -73,6 +73,11 @@ a:hover {
     color: rgb(255, 82, 82);
 }
 
+.coordinates {
+    color: blue;
+}
+
+
 @media screen and (max-width: 768px) {
     .info-wrapper {
       flex-direction: column;
