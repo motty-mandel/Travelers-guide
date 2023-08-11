@@ -2,7 +2,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-}
+  }
 
 body {
     font-family: Arial, sans-serif;
@@ -29,7 +29,7 @@ section {
     padding: 30px;
     border-radius: 15px;
 }
-
+/* flex properties */
 .earth{
     display: flex;
     flex-wrap: wrap;
@@ -72,7 +72,7 @@ a:hover {
     text-decoration: underline;
     color: rgb(255, 82, 82);
 }
-
+/* Mediaquery properties when app is resized */
 @media screen and (max-width: 768px) {
     .info-wrapper {
       flex-direction: column;
