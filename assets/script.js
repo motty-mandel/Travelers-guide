@@ -17,7 +17,6 @@ form.addEventListener('submit', async (event) => {
     event.preventDefault();
     welcomeMessage.style.display = "none";
     displayInfo.style.display = "block";
-    weatherInfo.style.display = "block";
     var searchTerm = searchInput.value;
 
     try {
@@ -33,9 +32,7 @@ form.addEventListener('submit', async (event) => {
             if (data.length === 1) {
                 var countryData = data[0];
                 displayCountryInfo(countryData);
-                var existingSearches = JSON.parse(localStorage.getItem('searches')) || [];
-                existingSearches.push(searchTerm);
-                localStorage.setItem('searches', JSON.stringify(existingSearches));
+                localStorage.setItem('lastSearched', searchTerm);
             } else {
                 displayCountryOptions(data);
             }
@@ -120,7 +117,8 @@ function displayCountryInfo(countryData) {
             <p class="currency-info">Currency: ${currencySymbol} ${currencyName}</p>
             <p class="population-info">Population: ${population}</p>
             <p class="region-info">Region: ${region}</p>
-            <p class="latlng-info">Lat-Lng: <a href="https://www.openstreetmap.org/#map=4/${latlng[0]}/${latlng[1]}" target="_blank">${latlng[0]}, ${latlng[1]}</a></p>
+            <p class="latlng-info">Lat-Lng: <a href="https://www.openstreetmap.org/#map=4/${latlng[0]}/${latlng[1]}" 
+            target="_blank"> <span class="coordinates">${latlng[0]}, ${latlng[1]}</span></a></p>
             <img class="flag-info" src="${flag}" alt="Flag" width="100">
         `;
     } catch (error) {

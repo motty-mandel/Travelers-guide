@@ -72,6 +72,11 @@ a:hover {
     text-decoration: underline;
     color: rgb(255, 82, 82);
 }
+
+.coordinates {
+        color: blue;
+    }
+
 /* Mediaquery properties when app is resized */
 @media screen and (max-width: 768px) {
     .info-wrapper {
