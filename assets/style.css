@@ -3,7 +3,8 @@
     margin: 0;
     padding: 0;
   }
-  body {
+
+body {
     font-family: Arial, sans-serif;
     background-image: url("https://media.giphy.com/media/mf8UbIDew7e8g/giphy.gif");
     background-size: cover;
@@ -27,18 +28,21 @@ section {
     background-color: rgba(255, 255, 255, 0.8);
     padding: 30px;
 }
+
 .earth{
     display: flex;
     flex-wrap: wrap;
     text-align: center;
     justify-content: center;
 }
+
 #footer {
     position: absolute;
     bottom: 0;
     width: 100%;
     height: 2.5rem;            
-  }
+}
+
 footer .credits {
     display: flex;
     justify-content: space-around;
@@ -60,5 +64,6 @@ a {
 
 a:hover {
     text-decoration: underline;
+    color: rgb(255, 82, 82);
 }
 
