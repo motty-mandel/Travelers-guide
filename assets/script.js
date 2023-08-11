@@ -1,9 +1,10 @@
+//variables for search input
 var form = document.querySelector('form');
 var welcomeMessage = document.querySelector('#earth');
 var searchInput = document.querySelector('#search-input');
 var displayInfo = document.getElementById('display-info');
 var weatherInfo = document.getElementById('weather-info');
-
+// Used APIs
 var iconUrl = "https://openweathermap.org/img/w/";
 var countriesUrl = "https://restcountries.com/v3.1/name/";
 var weatherUrl = "https://api.openweathermap.org/data/2.5/weather?q=";
@@ -28,6 +29,7 @@ form.addEventListener('submit', async (event) => {
         if (response.status === 404) {
             displayInfo.innerHTML = "Country not found.";
         } else {
+            //local storage
             if (data.length === 1) {
                 var countryData = data[0];
                 displayCountryInfo(countryData);
@@ -49,7 +51,7 @@ if (lastSearched) {
     searchInput.value = lastSearched;
     form.dispatchEvent(new Event('submit'));
 }
-
+//dropdown menu when there are multiple search results
 function displayCountryOptions(countries) {
     weatherInfo.style.display = "none";
     var optionsHtml = countries.map((country, index) => {
@@ -74,7 +76,7 @@ function displayCountryOptions(countries) {
         weatherInfo.style.display = "block";
     });
 }
-
+//displays information about searched country 
 function displayCountryInfo(countryData) {
     try {
         var capital = countryData.capital[0];
@@ -89,7 +91,7 @@ function displayCountryInfo(countryData) {
         var flag = countryData.flags.png;
         var region = countryData.region;
         var latlng = countryData.latlng;
-
+// displays weather for capital city of searched country
         var fetchWeather = function () {
             fetch(weatherUrl + capital + "&appid=" + apiKey + "&units=imperial")
                 .then(function (response) {
