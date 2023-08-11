@@ -3,7 +3,7 @@
     margin: 0;
     padding: 0;
   }
-
+/* background and font */
 body {
     font-family: Arial, sans-serif;
     background-image: url("https://media.giphy.com/media/mf8UbIDew7e8g/giphy.gif");
@@ -29,7 +29,7 @@ section {
     padding: 30px;
     border-radius: 15px;
 }
-
+/* flex properties */
 .earth{
     display: flex;
     flex-wrap: wrap;
@@ -72,7 +72,7 @@ a:hover {
     text-decoration: underline;
     color: rgb(255, 82, 82);
 }
-
+/* Mediaquery properties when app is resized */
 @media screen and (max-width: 768px) {
     .info-wrapper {
       flex-direction: column;
