@@ -17,6 +17,7 @@ form.addEventListener('submit', async (event) => {
     event.preventDefault();
     welcomeMessage.style.display = "none";
     displayInfo.style.display = "block";
+    weatherInfo.style.display = "block";
     var searchTerm = searchInput.value;
 
     try {
