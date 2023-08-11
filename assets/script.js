@@ -28,6 +28,9 @@ form.addEventListener('submit', async (event) => {
             if (data.length === 1) {
                 var countryData = data[0];
                 displayCountryInfo(countryData);
+                var existingSearches = JSON.parse(localStorage.getItem('searches')) || [];
+                existingSearches.push(searchTerm);
+                localStorage.setItem('searches', JSON.stringify(existingSearches));
             } else {
                 displayCountryOptions(data);
             }
@@ -36,6 +39,13 @@ form.addEventListener('submit', async (event) => {
         console.error("Error fetching data:", error);
     }
 });
+
+var lastSearched = localStorage.getItem('lastSearched');
+
+if (lastSearched) {
+    searchInput.value = lastSearched;
+    form.dispatchEvent(new Event('submit'));
+}
 
 function displayCountryOptions(countries) {
     var optionsHtml = countries.map((country, index) => {
