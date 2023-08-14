@@ -1,5 +1,5 @@
 var form = document.querySelector('form');
-var welcomeMessage = document.querySelector('#earth');
+var welcomeMessage = document.querySelector('.welcome-message');
 var searchInput = document.querySelector('#search-input');
 var displayInfo = document.getElementById('display-info');
 var weatherInfo = document.getElementById('weather-info');
@@ -207,42 +207,3 @@ function displaySelectedItems() {
   }
 
 window.addEventListener('load', displaySelectedItems);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
