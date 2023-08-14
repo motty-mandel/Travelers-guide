@@ -1,9 +1,18 @@
 //variables for search input
 var form = document.querySelector('form');
-var welcomeMessage = document.querySelector('#earth');
+var welcomeMessage = document.querySelector('.welcome-message');
 var searchInput = document.querySelector('#search-input');
 var displayInfo = document.getElementById('display-info');
 var weatherInfo = document.getElementById('weather-info');
+
+var displaySection = document.getElementById('#display-section');
+var capitalInfo = document.querySelector('.capital-info');
+var languageInfo = document.querySelector('.language-info');
+var currencyInfo = document.querySelector('.currency-info');
+var populationInfo = document.querySelector('.population-info');
+var regionInfo = document.querySelector('.region-info');
+var latlngInfo = document.querySelector('latlng-info');
+
 // Used APIs
 var iconUrl = "https://openweathermap.org/img/w/";
 var countriesUrl = "https://restcountries.com/v3.1/name/";
