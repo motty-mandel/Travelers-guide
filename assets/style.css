@@ -2,7 +2,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-  }
+}
 
 body {
     font-family: Arial, sans-serif;
@@ -11,7 +11,7 @@ body {
     background-repeat: no-repeat;
     background-position: center;
     min-height: 100vh;
- }
+}
 
 header {
     background-color: #333;
@@ -28,7 +28,15 @@ section {
     background-color: rgba(255, 255, 255, 0.8);
     padding: 30px;
     border-radius: 15px;
+    margin-right: 45px;
 }
+
+#display-info {
+    font-weight: bold;
+    text-decoration: underline;
+    padding-bottom: 10px;
+}
+
 /* flex properties */
 .earth{
     display: flex;
@@ -36,6 +44,7 @@ section {
     text-align: center;
     justify-content: center;
 }
+
 .info-wrapper {
     display: flex;
     flex-direction: row;
@@ -43,7 +52,7 @@ section {
 }
 
 #footer {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     width: 100%;
     height: 2.5rem;            
@@ -75,7 +84,7 @@ a:hover {
 
 .coordinates {
         color: blue;
-    }
+}
 
 /* Mediaquery properties when app is resized */
 @media screen and (max-width: 768px) {
