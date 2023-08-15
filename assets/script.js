@@ -23,53 +23,49 @@ var selectedOptionsFromCombined = combinedArray.filter(item => !item.capital);
 
 // Display the list of selected countries and options
 displaySelectedItems(selectedOptionsFromCombined);
-// Combine the arrays
-var combinedArray = selectedOptions.concat(selectedCountries);
-
 
 form.addEventListener('submit', async (event) => {
-    event.preventDefault();
-    welcomeMessage.style.display = "none";
-    displayInfo.style.display = "block";
-    weatherInfo.style.display = "block";
-    var searchTerm = searchInput.value;
+  event.preventDefault();
+  welcomeMessage.style.display = "none";
+  displayInfo.style.display = "block";
+  weatherInfo.style.display = "block";
+  var searchTerm = searchInput.value;
 
-    try {
-        var response = await fetch(countriesUrl + searchTerm);
-        var data = await response.json();
+  try {
+      var response = await fetch(countriesUrl + searchTerm);
+      var data = await response.json();
 
-        console.log(data);
+      console.log(data);
 
-        if (response.status === 404) {
-            displayInfo.innerHTML = "Country not found.";
-        } else {
-            if (data.length === 1) {
-                var countryData = data[0];
-                displayCountryInfo(countryData);
+      if (response.status === 404) {
+          displayInfo.innerHTML = "Country not found.";
+      } else {
+          if (data.length === 1) {
+              var countryData = data[0];
+              displayCountryInfo(countryData);
 
-                // Add the country info to the array of selected countries
-                selectedCountries.push({
+              // Add the country info to the array of selected countries
+              selectedCountries.push({
                   capital: countryData.name.common,
-                    name: countryData.capital[0],
-                    region: countryData.region
-                });
+                  name: countryData.capital[0],
+                  region: countryData.region
+              });
 
-                // Update local storage with the updated array
-                localStorage.setItem('selectedCountries', JSON.stringify(selectedCountries));
+              // Combine selectedOptions and selectedCountries arrays
+              combinedArray = [...selectedOptions, ...selectedCountries];
 
-                // Combine selectedOptions and selectedCountries arrays
-                combinedArray = [...selectedOptions, ...selectedCountries];
-                // Update local storage with the combined array
-                localStorage.setItem('combinedArray', JSON.stringify(combinedArray));
-            } else {
-                displayCountryOptions(data);
-            }
-        }
-    } catch (error) {
-        console.error("Error fetching data:", error);
-    }
+              // Update local storage with the updated array
+              localStorage.setItem('selectedCountries', JSON.stringify(selectedCountries));
+              localStorage.setItem('combinedArray', JSON.stringify(combinedArray));
+          } else {
+              displayCountryOptions(data);
+              
+          }
+      }
+  } catch (error) {
+      console.error("Error fetching data:", error);
+  }
 });
-
 
 
 function displayCountryOptions(countries) {
@@ -90,20 +86,24 @@ function displayCountryOptions(countries) {
     var countrySelect = document.getElementById('country-select');
 
     selectButton.addEventListener('click', () => {
-        var selectedIndex = parseInt(countrySelect.value);
-        var selectedCountry = countries[selectedIndex];
-        displayCountryInfo(selectedCountry);
-        weatherInfo.style.display = "block";
-
-        // Add the selected option to the array of selected options
-        selectedOptions.push(selectedCountry.name.common);
-        
-        localStorage.setItem('selectedOptions', JSON.stringify(selectedOptions));
-   // Combine selectedOptions and selectedCountries arrays
-   var combinedArray = [...selectedOptions, ...selectedCountries];
-   // Update local storage with the combined array
-   localStorage.setItem('combinedArray', JSON.stringify(combinedArray));
-});
+      var selectedIndex = parseInt(countrySelect.value);
+      var selectedCountry = countries[selectedIndex];
+      displayCountryInfo(selectedCountry);
+      weatherInfo.style.display = "block";
+  
+      selectedOptions.push({
+          capital: selectedCountry.name.common,
+          name: selectedCountry.capital[0],
+          region: selectedCountry.region
+      });
+  
+      // Combine selectedOptions and selectedCountries arrays
+      combinedArray = [...selectedOptions, ...selectedCountries];
+  
+      // Update local storage with the updated array
+      localStorage.setItem('selectedOptions', JSON.stringify(selectedOptions));
+      localStorage.setItem('combinedArray', JSON.stringify(combinedArray));
+    });
 }
 
 function displayCountryInfo(countryData) {
@@ -127,19 +127,23 @@ function displayCountryInfo(countryData) {
                     return response.json();
                 })
                 .then(function (data) {
-                    console.log(data);
+                    console.log( 'fetch-weather', data);
                   // Display the list of selected countries
                   displaySelectedItems();
                     var temp = data.main.temp;
                     var forecast = data.weather[0].description;
                     var icon = data.weather[0].icon;
+                    var humidity = data.main.humidity;
+                    var capitol = data.name
  
 
-                    weatherInfo.innerHTML = `
-                        <img src="${iconUrl + icon + ".png"}" alt="weather-icon">
-                        <p>Forecast: ${forecast}</p>
-                        <p>Temperature: ${temp}°F</p>
-                        <img src="" alt="">
+                    weatherInfo.innerHTML = ` 
+                        <img class="weather-img" src="${iconUrl + icon + ".png"}" alt="weather-icon">
+                        <p class="name-captiol"><strong>Weather For:</strong> ${capitol}
+                        <p class="forecast-info"><strong>Forecast: </strong> ${forecast}</p>
+                        <p class="temp-info"><strong>Temperature:</strong> ${temp}°F</p>
+                        <p class="humidity"><strong>Humidity:</strong> ${humidity}%</p>
+                        <img  src="" alt="">
                     `;
 
                 });
@@ -148,12 +152,12 @@ function displayCountryInfo(countryData) {
         fetchWeather();
 
         displayInfo.innerHTML = `
-            <p class="capital-info">Capital: ${capital}</p>
-            <p class="language-info">Language: ${languages}</p>
-            <p class="currency-info">Currency: ${currencySymbol} ${currencyName}</p>
-            <p class="population-info">Population: ${population}</p>
-            <p class="region-info">Region: ${region}</p>
-            <p class="latlng-info">Lat-Lng: <a href="https://www.openstreetmap.org/#map=4/${latlng[0]}/${latlng[1]}" target="_blank">${latlng[0]}, ${latlng[1]}</a></p>
+            <p class="capital-info"><strong>Capital:</strong> ${capital}</p>
+            <p class="language-info"><strong>Language: </strong> ${languages}</p>
+            <p class="currency-info"><strong>Currency: </strong> ${currencySymbol} ${currencyName}</p>
+            <p class="population-info"><strong>Population:</strong> ${population}</p>
+            <p class="region-info"><strong>Region: </strong> ${region}</p>
+            <p class="latlng-info"><strong>Lat-Lng: </strong> <a href="https://www.openstreetmap.org/#map=4/${latlng[0]}/${latlng[1]}" target="_blank">${latlng[0]}, ${latlng[1]}</a></p>
             <img class="flag-info" src="${flag}" alt="Flag" width="100">
         `;
         // Display the list of selected countries
@@ -166,38 +170,46 @@ function displayCountryInfo(countryData) {
 
 // Display the list of selected countries and options
 function displaySelectedItems() {
-    var selectedItemsList = document.getElementById('selected-items-list');
-    selectedItemsList.innerHTML = "";
-  
-    var itemsToDisplay = [];
-    var maxLength = Math.max(selectedCountries.length, selectedOptionsFromCombined.length);
-  
-    for (var i = 0; i < maxLength; i++) {
-      var countryInfo = selectedCountries[i];
-      var option = selectedOptionsFromCombined[i];
-  
-      if (countryInfo) {
-        itemsToDisplay.push(countryInfo.capital + ", " + countryInfo.name + " (" + countryInfo.region + ")");
-      }
-      if (option) {
-        itemsToDisplay.push(option);
-      }
-    }
-  
-    // Limit to a maximum of 10 items
-    var itemsToDisplayLimited = itemsToDisplay.slice(0, 10);
-    itemsToDisplayLimited.reverse();
-  
-    itemsToDisplayLimited.forEach(function (itemText) {
-      var item = document.createElement('li');
-      var itemButton = document.createElement('button');
-      itemButton.textContent = itemText;
-      itemButton.addEventListener('click', function () {
-        // Handle button click event for items
-      });
-      item.appendChild(itemButton);
-      selectedItemsList.appendChild(item);
-    });
-  }
+  var selectedItemsList = document.getElementById('selected-items-list');
+  selectedItemsList.innerHTML = "";
 
-window.addEventListener('load', displaySelectedItems);
+  // Reverse the combinedArray to display it in the correct order
+  var reversedArray = combinedArray.slice().reverse();
+
+  // Limit to a maximum of 10 items
+  var itemsToDisplayLimited = reversedArray.slice(0, 10);
+
+  itemsToDisplayLimited.forEach(function (item) {
+    var itemText = item.capital + ", " + item.name + " (" + item.region + ")";
+    var listItem = document.createElement('li');
+    var itemButton = document.createElement('button');
+    itemButton.textContent = itemText;
+    itemButton.classList.add('bigger-button', 'spaced-button'); // Add the bigger-button and space
+    itemButton.addEventListener('click', function () {
+      // Handle button click event for items 
+      // Populate the search input field with the country name
+      searchInput.value = item.capital;
+      
+    });
+    listItem.appendChild(itemButton);
+    selectedItemsList.appendChild(listItem);
+  });
+}
+
+function setupClearButton() {
+  var clearButton = document.getElementById('clear-button');
+  if (localStorage.length > 0) {
+      clearButton.style.display = "block";
+  } else {
+      clearButton.style.display = "none";
+  } 
+
+  clearButton.addEventListener('click', function() {
+    localStorage.clear();
+    location.reload();
+    /* var element = document.getElementById('selected-items-list');
+       element.remove(); */
+  });
+}
+setupClearButton()
+  window.addEventListener('load', displaySelectedItems);
