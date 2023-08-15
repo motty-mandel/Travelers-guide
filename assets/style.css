@@ -2,7 +2,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-  }
+}
 
 body {
     font-family: Arial, sans-serif;
@@ -11,7 +11,7 @@ body {
     background-repeat: no-repeat;
     background-position: center;
     min-height: 100vh;
- }
+}
 
 header {
     background-color: #333;
@@ -29,13 +29,15 @@ section {
     padding: 30px;
     border-radius: 15px;
 }
+
 /* flex properties */
-.earth{
+.earth {
     display: flex;
     flex-wrap: wrap;
     text-align: center;
     justify-content: center;
 }
+
 .info-wrapper {
     display: flex;
     flex-direction: row;
@@ -46,7 +48,7 @@ section {
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 2.5rem;            
+    height: 2.5rem;
 }
 
 footer .credits {
@@ -62,11 +64,60 @@ footer .credits ul li {
     text-align: center;
     padding: 15px;
 }
+
 #selected-items-list {
     list-style-type: none;
-  }
+}
+
+#clear-button {
+    background-color: rgb(188, 4, 4);
+}
+.humidity,
+.temp-info,
+.forecast-info,
+.capital-info,
+.language-info,
+.currency-info,
+.population-info,
+.region-info,
+.latlng-info {
+    margin-bottom: 10px;
+    /* Add spacing between each line */
+}
+
+.capital-info strong,
+.language-info strong,
+.currency-info strong,
+.population-info strong,
+.region-info strong,
+.latlng-info strong {
+    font-weight: bolder;
+    margin-right: 5px;
+}
+.weather-img {
+    height: 120px;
+    width: 120px;
+}
+#selected-items-list {
+    border-radius: 15px;
+    
+}
+ #lasted-searched {
+font-size: xx-large;
+background-color: rgba(255, 255, 255, 0.8);
+border-radius: 15px;
+padding-left: 9px;
+} 
+.bigger-button {
+    font-size: 16px; /* Adjust the font size to make the buttons bigger */
+    padding: 10px 20px; 
+    border-radius: 15px;
+}
+.spaced-button {
+    margin-bottom: 10px; 
+}
 a {
-    color: #fff;
+    color: #0c1ff5;
     text-decoration: none;
 }
 
@@ -76,12 +127,12 @@ a:hover {
 }
 
 .coordinates {
-        color: blue;
-    }
+    color: blue;
+}
 
 /* Mediaquery properties when app is resized */
 @media screen and (max-width: 768px) {
     .info-wrapper {
-      flex-direction: column;
+        flex-direction: column;
     }
 }

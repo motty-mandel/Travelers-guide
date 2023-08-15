@@ -59,6 +59,7 @@ form.addEventListener('submit', async (event) => {
               localStorage.setItem('combinedArray', JSON.stringify(combinedArray));
           } else {
               displayCountryOptions(data);
+              
           }
       }
   } catch (error) {
@@ -126,19 +127,23 @@ function displayCountryInfo(countryData) {
                     return response.json();
                 })
                 .then(function (data) {
-                    console.log(data);
+                    console.log( 'fetch-weather', data);
                   // Display the list of selected countries
                   displaySelectedItems();
                     var temp = data.main.temp;
                     var forecast = data.weather[0].description;
                     var icon = data.weather[0].icon;
+                    var humidity = data.main.humidity;
+                    var capitol = data.main.name
  
 
                     weatherInfo.innerHTML = `
-                        <img src="${iconUrl + icon + ".png"}" alt="weather-icon">
-                        <p>Forecast: ${forecast}</p>
-                        <p>Temperature: ${temp}°F</p>
-                        <img src="" alt="">
+                        <p class="name-captiol"><strong>Capital 
+                        <img class="weather-img" src="${iconUrl + icon + ".png"}" alt="weather-icon">
+                        <p class="forecast-info"><strong>Forecast: </strong> ${forecast}</p>
+                        <p class="temp-info"><strong>Temperature:</strong> ${temp}°F</p>
+                        <p class="humidity"><strong>Humidity:</strong> ${humidity}%</p>
+                        <img  src="" alt="">
                     `;
 
                 });
@@ -147,12 +152,12 @@ function displayCountryInfo(countryData) {
         fetchWeather();
 
         displayInfo.innerHTML = `
-            <p class="capital-info">Capital: ${capital}</p>
-            <p class="language-info">Language: ${languages}</p>
-            <p class="currency-info">Currency: ${currencySymbol} ${currencyName}</p>
-            <p class="population-info">Population: ${population}</p>
-            <p class="region-info">Region: ${region}</p>
-            <p class="latlng-info">Lat-Lng: <a href="https://www.openstreetmap.org/#map=4/${latlng[0]}/${latlng[1]}" target="_blank">${latlng[0]}, ${latlng[1]}</a></p>
+            <p class="capital-info"><strong>Capital:</strong> ${capital}</p>
+            <p class="language-info"><strong>Language: </strong> ${languages}</p>
+            <p class="currency-info"><strong>Currency: </strong> ${currencySymbol} ${currencyName}</p>
+            <p class="population-info"><strong>Population:</strong> ${population}</p>
+            <p class="region-info"><strong>Region: </strong> ${region}</p>
+            <p class="latlng-info"><strong>Lat-Lng: </strong> <a href="https://www.openstreetmap.org/#map=4/${latlng[0]}/${latlng[1]}" target="_blank">${latlng[0]}, ${latlng[1]}</a></p>
             <img class="flag-info" src="${flag}" alt="Flag" width="100">
         `;
         // Display the list of selected countries
@@ -179,8 +184,12 @@ function displaySelectedItems() {
     var listItem = document.createElement('li');
     var itemButton = document.createElement('button');
     itemButton.textContent = itemText;
+    itemButton.classList.add('bigger-button', 'spaced-button'); // Add the bigger-button and space
     itemButton.addEventListener('click', function () {
-      // Handle button click event for items
+      // Handle button click event for items 
+      // Populate the search input field with the country name
+      searchInput.value = item.capital;
+      
     });
     listItem.appendChild(itemButton);
     selectedItemsList.appendChild(listItem);
