@@ -66,12 +66,6 @@ form.addEventListener('submit', async (event) => {
   }
 });
 
-var lastSearched = localStorage.getItem('lastSearched');
-
-if (lastSearched) {
-    searchInput.value = lastSearched;
-    form.dispatchEvent(new Event('submit'));
-}
 
 function displayCountryOptions(countries) {
     weatherInfo.style.display = "none";
