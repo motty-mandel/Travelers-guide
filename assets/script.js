@@ -134,12 +134,12 @@ function displayCountryInfo(countryData) {
                     var forecast = data.weather[0].description;
                     var icon = data.weather[0].icon;
                     var humidity = data.main.humidity;
-                    var capitol = data.main.name
+                    var capitol = data.name
  
 
-                    weatherInfo.innerHTML = `
-                        <p class="name-captiol"><strong>Capital 
+                    weatherInfo.innerHTML = ` 
                         <img class="weather-img" src="${iconUrl + icon + ".png"}" alt="weather-icon">
+                        <p class="name-captiol"><strong>Weather For:</strong> ${capitol}
                         <p class="forecast-info"><strong>Forecast: </strong> ${forecast}</p>
                         <p class="temp-info"><strong>Temperature:</strong> ${temp}°F</p>
                         <p class="humidity"><strong>Humidity:</strong> ${humidity}%</p>
