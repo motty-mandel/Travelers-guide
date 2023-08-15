@@ -62,7 +62,9 @@ footer .credits ul li {
     text-align: center;
     padding: 15px;
 }
-  
+#selected-items-list {
+    list-style-type: none;
+  }
 a {
     color: #fff;
     text-decoration: none;
