@@ -78,52 +78,53 @@ footer .credits ul li {
 
 #clear-button {
     background-color: rgb(188, 4, 4);
+    border-radius: 10px;
+    padding: 5px;
 }
-.name-captiol,
-.humidity,
-.temp-info,
-.forecast-info,
-.capital-info,
-.language-info,
-.currency-info,
-.population-info,
-.region-info,
-.latlng-info {
+
+
+.the-info {
     margin-bottom: 10px;
     /* Add spacing between each line */
 }
 
-.capital-info strong,
-.language-info strong,
-.currency-info strong,
-.population-info strong,
-.region-info strong,
-.latlng-info strong {
+.the-info strong {
     font-weight: bolder;
     margin-right: 5px;
 }
+
 .weather-img {
     height: 120px;
     width: 120px;
 }
+
 #selected-items-list {
     border-radius: 15px;
-    
+
 }
- #lasted-searched {
-font-size: xx-large;
-background-color: rgba(255, 255, 255, 0.8);
-border-radius: 15px;
-padding-left: 9px;
-} 
+
+#lasted-searched {
+    font-size: xx-large;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+#lasted-searched h2 {
+    background-color: #fff;
+    border-radius: 15px;
+    padding-left: 9px;
+}
+
 .bigger-button {
-    font-size: 16px; /* Adjust the font size to make the buttons bigger */
-    padding: 10px 20px; 
+    font-size: 16px;
+    /* Adjust the font size to make the buttons bigger */
+    padding: 10px 20px;
     border-radius: 15px;
 }
+
 .spaced-button {
-    margin-bottom: 10px; 
+    margin-bottom: 10px;
 }
+
 a {
     color: #0c1ff5;
     text-decoration: none;
