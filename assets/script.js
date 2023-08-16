@@ -65,16 +65,19 @@ form.addEventListener('submit', async (event) => {
 
 function displayCountryOptions(countries) {
   weatherInfo.style.display = "none";
+
   var optionsHtml = countries.map((country, index) => {
     return `<option value="${index}">${country.name.common}</option>`;
   }).join('');
 
   displayInfo.innerHTML = `
-        <p>Multiple countries found. Please select one:</p>
-        <select id="country-select">
-            ${optionsHtml}
-        </select>
-        <button id="select-button">Select</button> `;
+    <div class="options-container">
+      <p>Multiple countries found. Please select one:</p>
+      <select id="country-select">
+          ${optionsHtml}
+      </select>
+      <button id="select-button">Select</button>
+    </div>`;
 
   var selectButton = document.getElementById('select-button');
   var countrySelect = document.getElementById('country-select');
@@ -148,6 +151,10 @@ function displayCountryInfo(countryData) {
             <p class="the-info"><strong>Region: </strong> ${region}</p>
             <p class="the-info"><strong>Lat-Lng: </strong> <a href="https://www.openstreetmap.org/#map=4/${latlng[0]}/${latlng[1]}" target="_blank">${latlng[0]}, ${latlng[1]}</a></p>
             <img class="the-info" src="${flag}" alt="Flag" width="100"> `;
+
+    // the Info Wrapper transition 
+    var infoWrapper = document.getElementById('info-wrapper');
+    infoWrapper.classList.add('show');
     // Display the list of selected countries
     displaySelectedItems();
   } catch (error) {
@@ -158,12 +165,14 @@ function displayCountryInfo(countryData) {
 function displaySelectedItems() {
   var selectedItemsList = document.getElementById('selected-items-list');
   selectedItemsList.innerHTML = "";
+
   // Reverse the combinedArray to display it in the correct order
   var reversedArray = combinedArray.slice().reverse();
   // Limit to a maximum of 10 items
   var itemsToDisplayLimited = reversedArray.slice(0, 10);
   if (combinedArray.length > 0) {
     document.getElementById('lasted-searched').style.display = 'block'; // Show the section
+    setupClearButton();
   } else {
     document.getElementById('lasted-searched').style.display = 'none'; // Hide the section
   }
@@ -196,5 +205,3 @@ function setupClearButton() {
     location.reload();
   });
 };
-
-

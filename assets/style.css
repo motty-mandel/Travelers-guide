@@ -82,6 +82,13 @@ footer .credits ul li {
     padding: 5px;
 }
 
+.options-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
 
 .the-info {
     margin-bottom: 10px;
@@ -137,6 +144,15 @@ a:hover {
 
 .coordinates {
     color: blue;
+}
+
+.info-wrapper {
+    transform: translateY(-100%);
+    transition: transform 0.5s ease;
+}
+
+.info-wrapper.show {
+    transform: translateY(0);
 }
 
 /* Mediaquery properties when app is resized */
